@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wake Up, Sandro</title>
+    <style>
+        /* Stile per l'interfaccia in stile Matrix */
+        body {
+            background-color: black;
+            color: green;
+            font-family: 'Courier', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #message {
+            font-size: 2em;
+            white-space: pre-wrap; /* Mantiene i ritorni a capo */
+            display: none; /* Nasconde il messaggio all'inizio */
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenitore per il messaggio -->
+    <div id="message">Wake Up, Sandro... The Matrix Has You.</div>
+
+    <script>
+        // Funzione per mostrare il messaggio con effetto di battitura
+        function showMatrixMessage() {
+            const messageElement = document.getElementById('message');
+            const messageText = messageElement.textContent;
+            messageElement.textContent = ''; // Inizia con testo vuoto
+            messageElement.style.display = 'block'; // Mostra l'elemento
+            
+            let index = 0;
+
+            function typeEffect() {
+                if (index < messageText.length) {
+                    messageElement.textContent += messageText[index];
+                    index++;
+                    setTimeout(typeEffect, 100); // Ritardo per l'effetto di battitura
+                }
+            }
+
+            typeEffect(); // Avvia l'effetto di battitura
+        }
+
+        // Avvia l'effetto dopo 3 secondi che la pagina è caricata
+        window.onload = function() {
+            setTimeout(showMatrixMessage, 3000);
+        };
+    </script>
+</body>
+</html>
